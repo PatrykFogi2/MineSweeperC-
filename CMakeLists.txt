@@ -8,10 +8,9 @@ set ( SOURCES main.cpp )
 # Dalej na razie nic nie trzeba zmieniać
 # przy każdej kompilacji używaj:
 add_compile_options(-Wall -Wextra -g)
-# definicja binarki (można użyć więcej niż raz - wtedy można skompilować kilka programów
-jednocześnie)
+
 add_executable(main ${SOURCES} )
-# ustawiamy "czysty" standard C++11
+
 set_target_properties(main PROPERTIES
  CXX_STANDARD 11
  CXX_EXTENSIONS OFF
