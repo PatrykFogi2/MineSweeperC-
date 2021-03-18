@@ -1,7 +1,7 @@
 #include "MinesweeperBoard.h"
 #include <iostream>
 using namespace std;
-MinesweeperBoard::MinesweeperBoard()
+MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)  
 {
     width = 10;
     height = 10;
@@ -42,5 +42,42 @@ void  MinesweeperBoard::debug_display() const
         }
         cout <<"\n" <<endl;
     }
-
 }
+
+
+int MinesweeperBoard::getBoardWidth() const
+{
+   return width;
+}
+
+
+int MinesweeperBoard::getBoardHeight() const
+{
+  return height;
+}
+
+
+int MinesweeperBoard::getMineCount() const
+{
+  int count = 0;
+  for(int line=0; line<height; line++)
+    {
+        for(int column=0; column<width; column++)
+        {
+
+         if(board[line][column].hasMine == true)
+            count +=1; 
+            continue;
+        }
+    }
+  return count;
+}
+
+//int MinesweeperBoard::countMines(int row, int col) const
+
+    
+
+
+
+  //int getBoardHeight() const;
+//  int getMineCount() const;

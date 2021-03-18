@@ -1,6 +1,9 @@
 #ifndef MineSweeeperBoard_H__
 #define MineSweeeperBoard_H__
 
+enum GameMode  { DEBUG, EASY, NORMAL, HARD };
+enum GameState { RUNNING, FINISHED_WIN, FINISHED_LOSS };
+
 struct Field
 {
 	bool hasMine;
@@ -16,8 +19,12 @@ class MinesweeperBoard
   int height;               // rzeczywista wysokość planszy
 
 public:
-  MinesweeperBoard();
+  MinesweeperBoard(int width, int height, GameMode mode);
   void debug_display() const;
+  int getBoardWidth() const;
+  int getBoardHeight() const;
+  int getMineCount() const;
+  int countMines(int row, int col) const;
 };
 
 
