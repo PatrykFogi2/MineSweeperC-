@@ -32,6 +32,9 @@ MinesweeperBoard::MinesweeperBoard()
            board[line][column] = {false,false,false};
         }
     }
+    board[0][0] = {1,0,0};
+    board[1][0] = {0,0,1};
+    board[0][2] = {1,1,0};
 }
 
 
@@ -40,8 +43,32 @@ MinesweeperBoard::MinesweeperBoard()
 
 //Funkcja debug_display() ma: wyświetlić planszę w celu weryfikacji poprawności przeprowadzanych operacji - każde pole ma być wyświetlone jako ciąg 3 znaków w nawiasach kwadratowych. 
 
-void  debug_display()
+void  MinesweeperBoard::debug_display() const
 {
+  for(int line=0; line<10; line++)
+    {
+        for(int column=0; column<10; column++)
+        {
+          if(board[line][column].hasMine == true)
+            cout<< "[M";
+          else
+          cout <<"[.";
+          if(board[line][column].isRevealed == true)
+            cout<< "o";
+          else
+          cout <<".";
+          if(board[line][column].hasFlag == true)
+            cout<< "f]";
+          else
+          cout <<".]";
+        }
+        cout <<"\n" <<endl;
+    }
+
+
+
+
+
 
 }
 
@@ -57,5 +84,9 @@ void  debug_display()
 int main() {
   std::cout << "Patryk Wonsewicz 259637 \n";
   //Proszę opracować klasę reprezentującą planszę do gry Saper (Minesweeper)
- 
+  MinesweeperBoard X;
+  
+  X.debug_display();
+
+
 }
