@@ -21,12 +21,12 @@ MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)
     }
     /*
     board[0][0] = {1,0,0};
-    board[1][0] = {0,0,1};
+    [1][8] = {0,0,1};
     board[0][2] = {1,1,0};
     */
-    
+    board[1][8] = {0,1,0};
   int mines = 0;
-  switch(this->mode)
+  switch(this->mode) //dziala
   {
       case EASY:
         mines=height*width*0.1;
@@ -53,25 +53,12 @@ MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)
 
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
 //Funkcja debug_display() ma: wyświetlić planszę w celu weryfikacji poprawności przeprowadzanych operacji - każde pole ma być wyświetlone jako ciąg 3 znaków w nawiasach kwadratowych. 
 
-void  MinesweeperBoard::debug_display() const
+void  MinesweeperBoard::debug_display() const //działa
 {
   for(int line=0; line<height; line++)
     {
@@ -95,19 +82,19 @@ void  MinesweeperBoard::debug_display() const
 }
 
 
-int MinesweeperBoard::getBoardWidth() const
+int MinesweeperBoard::getBoardWidth() const //działa
 {
    return width;
 }
 
 
-int MinesweeperBoard::getBoardHeight() const
+int MinesweeperBoard::getBoardHeight() const //działa
 {
   return height;
 }
 
 
-int MinesweeperBoard::getMineCount() const
+int MinesweeperBoard::getMineCount() const //działa
 {
   int mines = 0;
   for(int line=0; line<height; line++)
@@ -116,35 +103,88 @@ int MinesweeperBoard::getMineCount() const
         {
 
          if(board[line][column].hasMine == true)
-            mines +=1; 
-            continue;
+            mines +=1;             
         }
     }
   return mines;
 }
 
-int MinesweeperBoard::countMines(int row, int col) const
+
+
+
+int MinesweeperBoard::countMines(int row, int col) const //
 {
-  int count = 0;
-  if(row>height || col>width)
-    count = -1;
-  else 
-  while (board[row][col]== )
-  if (board[row][col].hasMine ==true && (row>height || col>width))
-    count ++;
-    
-    
-    
-    // if the field at (row,col) was not revealed - return -1 ?
-    
+  int mines = 0;  
+  
+  if(row>=height || col>=width) //za polem
+    return -1;
+  
+  if(board[row][col].isRevealed ==1) //nieodkryty
+    return -1;
+   
+   else
+    {
+      if(board[row-1][col-1].hasMine == 1 )
+        mines++;
+      if(board[row-1][col].hasMine == 1 )
+        mines++;
+      if(board[row-1][col+1].hasMine == 1 )
+        mines++;
+      if(board[row][col+1].hasMine == 1 )
+        mines++;
+      if(board[row][col-1].hasMine == 1 )
+        mines++;
+      if(board[row+1][col+1].hasMine == 1 )
+        mines++;
+      if(board[row-1][col+1].hasMine == 1 )
+        mines++;
+      if(board[row+1][col-1].hasMine == 1 )
+        mines++;
 
-
-  return count;
+      
+    }
+    return mines;
 }
 
-    
+    //dziala
+ bool MinesweeperBoard::hasFlag(int row, int col)  const
+ {
+   if(board[row][col].hasFlag ==1)
+     return true;
+   if(row>=height || col>=width) //za polem
+    return false; 
+   if(board[row][col].hasFlag ==0)
+     return false; 
+    if(board[row][col].isRevealed ==1)
+     return false; 
+ }
 
 
-
-  //int getBoardHeight() const;
-//  int getMineCount() const;
+ /*void MinesweeperBoard::toggleFlag(int row, int col);
+ {
+     
+ }
+ */
+ //dziala
+ bool MinesweeperBoard::isRevealed(int row, int col) const
+ {
+     if(board[row][col].isRevealed ==1)
+     return true; 
+ }
+ 
+ 
+ char MinesweeperBoard::getFieldInfo(int row, int col) const
+ {
+    if(row>=height || col>=width) //za polem
+      return '#';
+    if(board[row][col].hasFlag==true && board[row][col].isRevealed==false )   
+      return 'F';
+    if(board[row][col].hasFlag==false && board[row][col].isRevealed==false )   
+      return '_';
+    if(board[row][col].hasMine==true && board[row][col].isRevealed==true )   
+      return 'x'; 
+    if(board[row][col].hasMine==true && countMines(row,col) ==0 )   
+      return ' '; 
+    if(board[row][col].hasMine==true && countMines(row,col) > 0 )   
+      return countMines(row, col);  
+ }

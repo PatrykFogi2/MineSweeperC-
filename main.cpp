@@ -19,6 +19,9 @@ int main() {
   MinesweeperBoard x = MinesweeperBoard(10,10,DEBUG);
   
   x.debug_display();
-
+  //cout <<x.getBoardHeight();
+  cout <<x.countMines(1,0) << endl;
+  //cout <<x.getMineCount();
+  cout <<x.hasFlag(1,8) << endl;
 
 }
