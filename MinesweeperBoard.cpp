@@ -57,34 +57,30 @@ double mines =0;
 
   }
 
-int a =0; int b=0;
+  int row =0; int col=0;
   int c = height-1; int d= width -1;
   int i =0; 
  
   while(i<mines)  
   {
-     a=rand()%c;
-     b=rand()%d;
+     row=rand()%c;
+     col=rand()%d;
   
-     if(board[a][b].hasMine==1)
+     if(board[row][col].hasMine==1)
        {
          continue;
        }
   
       else
         {
-          board[a][b].hasMine=1;
+          board[row][col].hasMine=1;
           i++;
         }
   } 
 
-
-
-
-
 }
 
-
+//////////////////////////////////////////////////////////////////////////////
 //Funkcja debug_display() ma: wyświetlić planszę w celu weryfikacji poprawności przeprowadzanych operacji - każde pole ma być wyświetlone jako ciąg 3 znaków w nawiasach kwadratowych. 
 
 void  MinesweeperBoard::debug_display() const //działa
@@ -169,7 +165,7 @@ int MinesweeperBoard::countMines(int row, int col) const //
         mines++;
       if(board[row+1][col-1].hasMine == 1 )
         mines++;
-
+      //zapytac sie czemu petla nie dzialala
       
     }
     return mines;
@@ -188,20 +184,31 @@ int MinesweeperBoard::countMines(int row, int col) const //
      return false; 
  }
 
-
- /*void MinesweeperBoard::toggleFlag(int row, int col);
+//////////////////////////////////////////////////////////////////////////////
+ void MinesweeperBoard::toggleFlag(int row, int col)
  {
+     if(board[row][col].isRevealed ==0)
+        board[row][col].hasFlag =1;
      
+     if(board[row][col].isRevealed ==0) 
+       return;
+     if(row>=height || col>=width) //za polem
+       return;
+     if(getGameState()==FINISHED_WIN)
+       return;    
  }
- */
- //dziala
- bool MinesweeperBoard::isRevealed(int row, int col) const //sprawdz
- {
+ 
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+bool MinesweeperBoard::isRevealed(int row, int col) const
+  {
      if(board[row][col].isRevealed ==1)
-     return true; 
- }
+       return true;     
+  }
  
- 
+ //////////////////////////////////////////////////////////////////////////////
  char MinesweeperBoard::getFieldInfo(int row, int col) const //sprawdz
  {
     if(row>=height || col>=width) //za polem
@@ -219,7 +226,8 @@ int MinesweeperBoard::countMines(int row, int col) const //
  }
  
  
- GameState MinesweeperBoard::getGameState() const
+ /*GameState MinesweeperBoard::getGameState() const
  {
 
  }
+ */

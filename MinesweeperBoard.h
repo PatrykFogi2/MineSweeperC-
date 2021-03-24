@@ -30,7 +30,7 @@ public:
   int countMines(int row, int col) const;
   bool hasFlag(int row, int col) const;
   void toggleFlag(int row, int col); 
-  bool isRevealed(int row, int col) const; //ok
+  bool isRevealed(int row, int col) const; 
   char getFieldInfo(int row, int col) const;
   GameState getGameState() const;
 };
