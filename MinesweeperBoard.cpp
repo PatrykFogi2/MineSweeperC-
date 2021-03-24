@@ -6,6 +6,7 @@ MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)
     this ->width = width;
     this -> height = height;
     this -> mode = mode;
+    
     //width = 10;
     //height = 10;
     
@@ -174,6 +175,7 @@ int MinesweeperBoard::countMines(int row, int col) const //
     //dziala
  bool MinesweeperBoard::hasFlag(int row, int col)  const //sprawdz
  {
+     
    if(board[row][col].hasFlag ==1)
      return true;
    if(row>=height || col>=width) //za polem
@@ -187,6 +189,7 @@ int MinesweeperBoard::countMines(int row, int col) const //
 //////////////////////////////////////////////////////////////////////////////
  void MinesweeperBoard::toggleFlag(int row, int col)
  {
+     firstMove = true;
      if(board[row][col].isRevealed ==0)
         board[row][col].hasFlag =1;
      
@@ -225,9 +228,31 @@ bool MinesweeperBoard::isRevealed(int row, int col) const
       return countMines(row, col);  
  }
  
- 
- /*GameState MinesweeperBoard::getGameState() const
- {
 
+void MinesweeperBoard::revealField(int row, int col)
+{
+  board[row][col].isRevealed = 1;
+   
+   if(row>=height || col>=width)
+     return;
+   if (getGameState()==FINISHED_WIN)
+     return;
+   if (board[row][col].hasFlag == 1)
+     return;
+   if (board[row][col].isRevealed ==0 && board[row][col].hasMine==0)  
+     board[row][col].isRevealed =1;
+   if (board[row][col].isRevealed ==0 && board[row][col].hasMine==1) 
+     {
+         firstMove == false;  
+         
+     }
+
+
+}
+
+ 
+ GameState MinesweeperBoard::getGameState() const
+ {
+   
  }
- */
+ 

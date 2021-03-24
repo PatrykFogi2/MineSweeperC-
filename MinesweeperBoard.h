@@ -18,7 +18,8 @@ class MinesweeperBoard
   int width;                // rzeczywista szerokość planszy
   int height;               // rzeczywista wysokość planszy
   GameMode mode;   //poziom
- 
+  //first move
+  bool firstMove = false;;  
   
 public:
   
@@ -30,9 +31,10 @@ public:
   int countMines(int row, int col) const;
   bool hasFlag(int row, int col) const;
   void toggleFlag(int row, int col); 
+  void revealField(int row, int col);
   bool isRevealed(int row, int col) const; 
   char getFieldInfo(int row, int col) const;
-  GameState getGameState() const;
+    GameState getGameState() const;
 };
 
 
