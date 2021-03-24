@@ -17,8 +17,11 @@ class MinesweeperBoard
   Field board[100][100];    // 100-elementowa tablica, 100-elementowych tablic typu Field 
   int width;                // rzeczywista szerokość planszy
   int height;               // rzeczywista wysokość planszy
-
+  GameMode mode;   //poziom
+ 
+  
 public:
+  
   MinesweeperBoard(int width, int height, GameMode mode);
   void debug_display() const;
   int getBoardWidth() const;
