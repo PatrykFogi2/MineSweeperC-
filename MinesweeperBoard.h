@@ -32,6 +32,7 @@ public:
   void toggleFlag(int row, int col); 
   bool isRevealed(int row, int col) const; //ok
   char getFieldInfo(int row, int col) const;
+  GameState getGameState() const;
 };
 
 

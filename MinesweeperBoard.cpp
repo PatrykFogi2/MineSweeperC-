@@ -19,13 +19,17 @@ MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)
            board[line][column] = {false,false,false};
         }
     }
+
+
     /*
     board[0][0] = {1,0,0};
     [1][8] = {0,0,1};
     board[0][2] = {1,1,0};
     */
     board[1][8] = {0,1,0};
-  int mines = 0;
+  
+  
+double mines =0;
   switch(this->mode) //dziala
   {
       case EASY:
@@ -52,6 +56,31 @@ MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)
         break;
 
   }
+
+int a =0; int b=0;
+  int c = height-1; int d= width -1;
+  int i =0; 
+ 
+  while(i<mines)  
+  {
+     a=rand()%c;
+     b=rand()%d;
+  
+     if(board[a][b].hasMine==1)
+       {
+         continue;
+       }
+  
+      else
+        {
+          board[a][b].hasMine=1;
+          i++;
+        }
+  } 
+
+
+
+
 
 }
 
@@ -147,7 +176,7 @@ int MinesweeperBoard::countMines(int row, int col) const //
 }
 
     //dziala
- bool MinesweeperBoard::hasFlag(int row, int col)  const
+ bool MinesweeperBoard::hasFlag(int row, int col)  const //sprawdz
  {
    if(board[row][col].hasFlag ==1)
      return true;
@@ -166,14 +195,14 @@ int MinesweeperBoard::countMines(int row, int col) const //
  }
  */
  //dziala
- bool MinesweeperBoard::isRevealed(int row, int col) const
+ bool MinesweeperBoard::isRevealed(int row, int col) const //sprawdz
  {
      if(board[row][col].isRevealed ==1)
      return true; 
  }
  
  
- char MinesweeperBoard::getFieldInfo(int row, int col) const
+ char MinesweeperBoard::getFieldInfo(int row, int col) const //sprawdz
  {
     if(row>=height || col>=width) //za polem
       return '#';
@@ -187,4 +216,10 @@ int MinesweeperBoard::countMines(int row, int col) const //
       return ' '; 
     if(board[row][col].hasMine==true && countMines(row,col) > 0 )   
       return countMines(row, col);  
+ }
+ 
+ 
+ GameState MinesweeperBoard::getGameState() const
+ {
+
  }
