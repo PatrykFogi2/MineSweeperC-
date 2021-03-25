@@ -14,7 +14,8 @@ MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)
 
 
     
-    for (int line=0; line<height; line++)  {
+    for (int line=0; line<height; line++) 
+    {
       for (int column=0; column<width; column++)
         {
            board[line][column] = {false,false,false};
@@ -119,12 +120,15 @@ void  MinesweeperBoard::debug_display() const //działa
      
    if(board[row][col].hasFlag ==1)
      return true;
+     
+     
    if(row>=height || col>=width) //za polem
     return false; 
    if(board[row][col].hasFlag ==0)
      return false; 
     if(board[row][col].isRevealed ==1)
      return false; 
+     
  }
 
 //////////////////////////////////////////////////////////////////////////////
