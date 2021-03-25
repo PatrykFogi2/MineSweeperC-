@@ -22,7 +22,10 @@ int main() {
   //cout <<x.getBoardHeight();
   cout <<x.countMines(1,0) << endl;
   //cout <<x.getMineCount();
- 
-  cout<<x.getMineCount();
+  cout<<x.isRevealed(1, 8) <<endl;
+  cout<<x.getMineCount() << endl;
+  //cout <<x.countMines(8,8) << endl;
+ // cout<<x.getFieldInfo(8,7) << endl;
+  x.toggleFlag(8,7); 
 
 }

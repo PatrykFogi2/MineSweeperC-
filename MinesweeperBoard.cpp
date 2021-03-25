@@ -27,7 +27,7 @@ MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)
     [1][8] = {0,0,1};
     board[0][2] = {1,1,0};
     */
-    board[1][8] = {0,1,0};
+    //board[8][7] = {0,0,0};
   
   
 double mines =0;
@@ -162,7 +162,7 @@ int MinesweeperBoard::countMines(int row, int col) const //
         mines++;
       if(board[row+1][col+1].hasMine == 1 )
         mines++;
-      if(board[row-1][col+1].hasMine == 1 )
+      if(board[row+1][col+1].hasMine == 1 )
         mines++;
       if(board[row+1][col-1].hasMine == 1 )
         mines++;
@@ -171,7 +171,7 @@ int MinesweeperBoard::countMines(int row, int col) const //
     }
     return mines;
 }
-
+//////////////////////////////////////////////////////////////////////////////
     //dziala
  bool MinesweeperBoard::hasFlag(int row, int col)  const //sprawdz
  {
@@ -187,45 +187,50 @@ int MinesweeperBoard::countMines(int row, int col) const //
  }
 
 //////////////////////////////////////////////////////////////////////////////
+ //dziala
  void MinesweeperBoard::toggleFlag(int row, int col)
  {
-     firstMove = true;
-     if(board[row][col].isRevealed ==0)
-        board[row][col].hasFlag =1;
      
-     if(board[row][col].isRevealed ==0) 
-       return;
      if(row>=height || col>=width) //za polem
        return;
      if(getGameState()==FINISHED_WIN)
-       return;    
+       return; 
+      if(board[row][col].isRevealed ==1) 
+       return; 
+     
+     if(board[row][col].isRevealed ==0)
+        board[row][col].hasFlag =1;
+          
  }
  
 
 //////////////////////////////////////////////////////////////////////////////
-
+//dziala
 
 bool MinesweeperBoard::isRevealed(int row, int col) const
   {
      if(board[row][col].isRevealed ==1)
-       return true;     
+       return true;  
+     return false;      
   }
  
  //////////////////////////////////////////////////////////////////////////////
- char MinesweeperBoard::getFieldInfo(int row, int col) const //sprawdz
+ char MinesweeperBoard::getFieldInfo(int row, int col) const 
  {
     if(row>=height || col>=width) //za polem
-      return '#';
+      return '#'; //dziala
     if(board[row][col].hasFlag==true && board[row][col].isRevealed==false )   
-      return 'F';
+      return 'F'; //dziala
     if(board[row][col].hasFlag==false && board[row][col].isRevealed==false )   
-      return '_';
+      return '_'; //dziala
     if(board[row][col].hasMine==true && board[row][col].isRevealed==true )   
-      return 'x'; 
-    if(board[row][col].hasMine==true && countMines(row,col) ==0 )   
-      return ' '; 
-    if(board[row][col].hasMine==true && countMines(row,col) > 0 )   
-      return countMines(row, col);  
+      return 'x'; //dziala
+    if(board[row][col].isRevealed==true && countMines(row,col) == 0 )   
+      return ' '; //dziala
+    if(board[row][col].isRevealed==true && countMines(row,col) != 0 )   
+      return countMines(row, col);  // kod asci?
+      
+
  }
  
 
@@ -243,15 +248,34 @@ void MinesweeperBoard::revealField(int row, int col)
      board[row][col].isRevealed =1;
    if (board[row][col].isRevealed ==0 && board[row][col].hasMine==1) 
      {
-        if( firstMove == false)
+        if( firstMove == true)
+          {
+              int a; int b; int i; int c = height-1; int d= width -1; int line; int column;
+              while(i<1)  
+              {
+                   line=rand()%c;
+                   column=rand()%d;
+  
+                 if(board[line][column].hasMine==1)
+                    {
+                      continue;
+                    }
+                            //uprosicc
+                 else
+                   {
+                      board[line][column].hasMine = 1;
+                      board[row][col] = {0,0,1}; 
+                      i++;
+                   }
+                 } 
+               }
           
-          else
-          board[row][coal].isRevealed ==1 
-          GameState == FINISHED_LOSS;
-         
+        
+          
+          board[row][col].isRevealed =1 ;
+           getGameState();  
+          
      }
-
-
 }
 
  
@@ -269,10 +293,34 @@ void MinesweeperBoard::revealField(int row, int col)
                 if(board[line][column].isRevealed==0 && board[line][column].hasMine==1)
                   mines++;
                 if(getMineCount()==mines)
+                {
                   return FINISHED_WIN;  
-                else
-                  return RUNNING;  
+                }
+                return RUNNING;  
             }
       }
  }
   
+
+
+
+  /*
+
+  int line = row; int column = col; mines = 0; 
+for(line=row-1; line>row+1; line++)
+    {
+           
+           if(board[line][col].hasMine==1 && line!=raw)
+            mines++;
+           if(board[line][col-1].hasMine==1)
+            mines++;
+            if(board[line][col+1].hasMine==1)
+            mines++; 
+
+        } 
+        return mines;
+     }
+
+
+
+  */
