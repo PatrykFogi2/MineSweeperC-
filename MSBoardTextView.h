@@ -4,7 +4,7 @@
 
 class MSBoardTextView
 {
-  MinesweeperBoard BoardDisplay;
+  MinesweeperBoard &BoardDisplay;
   int height;
   int width;
   public:

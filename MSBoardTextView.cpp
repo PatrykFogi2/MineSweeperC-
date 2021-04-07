@@ -1,4 +1,5 @@
 #include "MSBoardTextView.h"
+
 #include <iostream>
 using namespace std;
 
@@ -6,45 +7,34 @@ using namespace std;
 
 MSBoardTextView::MSBoardTextView(MinesweeperBoard &board):BoardDisplay(board)
 {
-    height = BoardDisplay.getBoardHeight();
-    width = BoardDisplay.getBoardWidth();
+   int height = BoardDisplay.getBoardHeight();
+   int width = BoardDisplay.getBoardWidth();
 }
 
 void MSBoardTextView::display() 
 {
-  GameState state = BoardDisplay.getGameState();
-    
+     GameState state = BoardDisplay.getGameState();
+     int height = BoardDisplay.getBoardHeight();
+     int width = BoardDisplay.getBoardWidth();
+     
+
   for(int row=0; row<height; row++)
     {
-        for(int col=0; col<width; width++)
+        for(int col=0; col<width; col++)
           {
-            if(BoardDisplay.hasFlag(row, col))
-              cout <<" F " << endl;  
-            
-            else if(BoardDisplay.isRevealed(row,col) && BoardDisplay.hasMine(row, col))
+              cout <<"[ " <<BoardDisplay.getFieldInfo(row,col)<<" ]" ;
+              
+              if(BoardDisplay.hasMine(row, col)==1 &&  BoardDisplay.isRevealed(row,col)==1)
               {
-                cout <<"LOST"<<endl;
-                state = FINISHED_LOSS;
+                state = FINISHED_LOSS; 
+                
               }
-            
-            else if (BoardDisplay.isRevealed(row,col))
-              {
-                if(BoardDisplay.countMines(row,col)==0)
-                  cout <<" " <<endl;
-                else 
-                  cout <<" " << BoardDisplay.countMines(row,col) << " " <<endl;  
-              }
-            
 
-          
           }
-
-    }
-
-  if(state!=RUNNING)
-    if(state == FINISHED_WIN)
-      {
-          cout <<"YOU WIN" << endl;
-      }
-    cout << "YOU LOST" << endl;   
+              cout << endl;    
+    }      
+  cout << endl << endl;
+  if(state!=RUNNING){
+    state == FINISHED_WIN ? cout <<"YOU WIN" : cout << "YOU LOSE" ;  
+  }
 }

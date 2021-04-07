@@ -20,8 +20,8 @@ class MinesweeperBoard
   int height;               // rzeczywista wysokość planszy
   GameMode mode;   //poziom
   //first move
-  bool firstMove = false;
-  
+  bool firstMove();
+  bool Czy_Srodek (int row, int col) const ;
 public:
   
   MinesweeperBoard(int width, int height, GameMode mode);
