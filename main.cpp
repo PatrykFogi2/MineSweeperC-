@@ -30,15 +30,15 @@ int main() {
  // cout<<x.getFieldInfo(8,7) << endl;
   
  
- x.revealField(5,1);
-x.toggleFlag(6, 1);
-x.revealField(6,0);
+ //x.revealField(5,1);
+x.toggleFlag(8, 0);
+x.revealField(7,0);
  //cout <<x.getGameState();
  x.debug_display();
  cout <<x.getGameState() << endl;
  view.display();
  //cout <<x.countMines (6,7) << endl;
- cout << x.getFieldInfo(6,1) << endl;
- cout << x.getFieldInfo(6, 0) << endl;
+ //cout << x.getFieldInfo(6,1) << endl;
+ //cout << x.getFieldInfo(6, 0) << endl;
  
 }

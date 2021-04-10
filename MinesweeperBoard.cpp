@@ -1,6 +1,9 @@
 #include "MinesweeperBoard.h"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
+
 MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)  
 {
     this -> width = width;
@@ -30,7 +33,7 @@ MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)
     */
     //board[8][7] = {0,0,0};
   
-  
+  srand( time( NULL ) );
 double mines =0;
   switch(this->mode) //dziala
   {
@@ -142,7 +145,7 @@ void  MinesweeperBoard::debug_display() const //działa
  void MinesweeperBoard::toggleFlag(int row, int col)
  {
      
-     if(row>=height || col>=width) //za polem
+     if(Czy_Srodek(row,col)==false) //za polem
        return;
      if(getGameState()==FINISHED_WIN)
        return; 
@@ -268,19 +271,20 @@ void MinesweeperBoard::revealField(int row, int col)
     {
      board[row][col].isRevealed = 1; 
     }
-  else if ( board[row][col].hasMine==1 )
+  /*else if ( board[row][col].hasMine==1 )
     {
       board[row][col].isRevealed = 1;
       GameState state = FINISHED_LOSS;
-    } /*
-  //&& firstMove() == true)   
+    } */
+  else if ( board[row][col].hasMine== 1&& firstMove() == true && mode!=DEBUG)   
     {
+        board[row][col].isRevealed = 1;
         board[row][col].hasMine= 0;
-        int a = 0; int c = height-1; int d= width -1;
+        int a = 0 , c , d;
           while (a ==0 )
             {
-                c =rand() %height;
-                d = rand() %width;
+                c =rand() %width;
+                d = rand() %height;
                 if (board[c][d].hasMine==0 && d!=row && c!= col)
                 {
                   board[c][d].hasMine = 1;
@@ -288,7 +292,7 @@ void MinesweeperBoard::revealField(int row, int col)
                 }  
             }
     }
-  */
+  
    else
   GameState state = FINISHED_LOSS; 
 }   
