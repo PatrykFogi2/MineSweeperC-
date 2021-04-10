@@ -5,10 +5,13 @@
 
 class MSTestController
 {
-
+MinesweeperBoard &BoardDisplay;
+MSBoardTextView &WidokDisplay; 
 
     
 public:
+MSTestController(MinesweeperBoard &board,MSBoardTextView &widok);
+void play(); 
 };
 
 

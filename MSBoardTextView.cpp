@@ -4,7 +4,6 @@
 using namespace std;
 
 
-
 MSBoardTextView::MSBoardTextView(MinesweeperBoard &board):BoardDisplay(board)
 {
    int height = BoardDisplay.getBoardHeight();

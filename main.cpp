@@ -1,6 +1,7 @@
 #include <iostream>
 #include "MinesweeperBoard.h"
 #include "MSBoardTextView.h"
+#include "MSTextController.h"
 
 using namespace std;
 
@@ -20,6 +21,8 @@ int main() {
   //Proszę opracować klasę reprezentującą planszę do gry Saper (Minesweeper)
   MinesweeperBoard x = MinesweeperBoard(10,10, EASY);
   MSBoardTextView view (x);
+  MSTestController ctrl (x, view); 
+  
   //x.debug_display();
   //cout <<x.getBoardHeight();
   //cout <<x.countMines(1,0) << endl;
@@ -31,12 +34,13 @@ int main() {
   
  
  //x.revealField(5,1);
-x.toggleFlag(8, 0);
-x.revealField(7,0);
+
  //cout <<x.getGameState();
  x.debug_display();
  cout <<x.getGameState() << endl;
  view.display();
+ ctrl.play();
+
  //cout <<x.countMines (6,7) << endl;
  //cout << x.getFieldInfo(6,1) << endl;
  //cout << x.getFieldInfo(6, 0) << endl;
