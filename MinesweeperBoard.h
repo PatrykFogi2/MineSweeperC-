@@ -19,6 +19,7 @@ class MinesweeperBoard
   int width;                // rzeczywista szerokość planszy
   int height;               // rzeczywista wysokość planszy
   GameMode mode;   //poziom
+  GameState state;
   //first move
   bool firstMove();
   bool Czy_Srodek (int row, int col) const ;

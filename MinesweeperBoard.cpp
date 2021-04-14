@@ -133,19 +133,14 @@ void  MinesweeperBoard::debug_display() const //działa
  //dziala
  void MinesweeperBoard::toggleFlag(int row, int col)
  {
-     
-     if(Czy_Srodek(row,col)==false) //za polem
+     if(Czy_Srodek(row,col)==0 || state==FINISHED_WIN || board[row][col].isRevealed ==1)
        return;
-     if(getGameState()==FINISHED_WIN)
-       return; 
-      if(board[row][col].isRevealed ==1) 
-       return; 
-     
-     if(board[row][col].isRevealed ==0)
-        board[row][col].hasFlag =1;
+     else 
+       board[row][col].hasFlag = 1;
+      
           
  }
- 
+
 
 //////////////////////////////////////////////////////////////////////////////
 //dziala
@@ -199,21 +194,45 @@ int MinesweeperBoard::countMines(int row, int col) const //
      
     int mines;
     
-    for(int line=0; line<height; line++)
+    for(int row=0; row<height; row++)
       {
-          for(int column=0; column<width; line++)
+          for(int column=0; column<width; column++)
             {
-                if(board[line][column].isRevealed==1 && board[line][column].hasMine==1)
+                if(board[row][column].isRevealed==1 && board[row][column].hasMine==1)
+                  
                   return FINISHED_LOSS; 
-                if(board[line][column].hasFlag==1 && board[line][column].hasMine==1)
+                if(board[row][column].hasFlag==1 && board[row][column].hasMine==1)
                   mines++;
-                if(getMineCount()==mines)
-                {
-                  return FINISHED_WIN;  
-                }
+                 {
+                  if(getMineCount()==mines)
+                  {
+                    return FINISHED_WIN;  
+                  }
+                 } 
                 return RUNNING;  
             }
+          
       }
+      
+      /*
+      int mines = 0;
+    for(int row=0; row<height; row++)
+      {
+          for(int col=0; col<width; col++)
+          {
+              if(board[row][col].isRevealed ==1 && board[row][col].hasMine == 1)
+                        return FINISHED_LOSS;
+                
+              else if(board[row][col].isRevealed ==0 && board[row][col].hasMine ==1 )  
+                {
+                   
+                        return FINISHED_WIN;
+                    
+                }
+             return RUNNING;   
+          }
+      }
+*/
  }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -221,7 +240,7 @@ int MinesweeperBoard::countMines(int row, int col) const //
 char MinesweeperBoard::getFieldInfo(int row, int col) const 
  {
       
-    if(row>=height || col>=width || row<0 ||col<0) //za polem
+    if(Czy_Srodek(row,col)== false) //za polem
       return '#'; 
     else if(board[row][col].hasFlag==true && board[row][col].isRevealed==false )   
       return 'F'; 
@@ -258,18 +277,16 @@ void MinesweeperBoard::revealField(int row, int col)
      return;
   else if (board[row][col].hasMine ==0  )
     {
-     board[row][col].isRevealed = 1; 
+     board[row][col].isRevealed = 1;   //bez miny
     }
-  /*else if ( board[row][col].hasMine==1 )
+
+  else if ( board[row][col].hasMine== 1 )   //mina first move
     {
-      board[row][col].isRevealed = 1;
-      GameState state = FINISHED_LOSS;
-    } */
-  else if ( board[row][col].hasMine== 1&& firstMove() == true && mode!=DEBUG)   
-    {
+        if (firstMove() == true && mode!=DEBUG)
+        {
         board[row][col].isRevealed = 1;
         board[row][col].hasMine= 0;
-        int a = 0 , c , d;
+        int a = 0 , c , d; 
           while (a ==0 )
             {
                 c =rand() %width;
@@ -280,10 +297,15 @@ void MinesweeperBoard::revealField(int row, int col)
                   a++;
                 }  
             }
+        }
+        else 
+          board[row][col].isRevealed = 1;
+          state = FINISHED_LOSS; 
     }
-  
-   else
-  GameState state = FINISHED_LOSS; 
+   
+   
+   
+    
 }   
    
 //////////////////////////////////////////////////////////////////////////////

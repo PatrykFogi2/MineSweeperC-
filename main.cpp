@@ -29,8 +29,8 @@ int main() {
 
  //cout <<x.getGameState();
  x.debug_display();
- cout <<x.getGameState() << endl;
- view.display();
+
+ 
  ctrl.play();
 
  //cout <<x.countMines (6,7) << endl;

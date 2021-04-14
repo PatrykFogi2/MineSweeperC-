@@ -26,14 +26,24 @@ void MSBoardTextView::display()
               
               if(BoardDisplay.hasMine(row,col)==1 &&  BoardDisplay.isRevealed(row,col)==1)
               {
+                 
                 state = FINISHED_LOSS; 
               }
-
+              
           }
               cout << endl;    
     }      
   cout << endl << endl;
-  if(state!=RUNNING){
-    state == FINISHED_WIN ? cout <<"YOU WIN" : cout << "YOU LOSE" ;  
-  }
+ 
+ 
+  if(state==FINISHED_LOSS)
+    {
+        cout <<"YOU LOSE"<<endl;
+    }
+  if(state==FINISHED_WIN)
+    {
+        cout <<"YOU WIN" << endl;
+    }
+    //state == FINISHED_WIN ? cout <<"YOU WIN" : cout << "YOU LOSE" ;  
+  
 }

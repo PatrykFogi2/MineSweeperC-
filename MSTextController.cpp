@@ -35,9 +35,10 @@ while (BoardDisplay.getGameState() == RUNNING )
     {
       BoardDisplay.toggleFlag(row,col);    
     }
-
-  
+   
+    
     WidokDisplay.display();
-    cout <<"Next" << endl;
+    
+    cout <<"\n Next" << endl;
   }
 }
