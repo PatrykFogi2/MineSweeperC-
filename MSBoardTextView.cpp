@@ -10,6 +10,7 @@ MSBoardTextView::MSBoardTextView(MinesweeperBoard &board):BoardDisplay(board)
    int width = BoardDisplay.getBoardWidth();
 }
 
+
 void MSBoardTextView::display() 
 {
      GameState state = BoardDisplay.getGameState();
@@ -23,10 +24,9 @@ void MSBoardTextView::display()
           {
               cout <<"[ " <<BoardDisplay.getFieldInfo(row,col)<<" ]" ;
               
-              if(BoardDisplay.hasMine(row, col)==1 &&  BoardDisplay.isRevealed(row,col)==1)
+              if(BoardDisplay.hasMine(row,col)==1 &&  BoardDisplay.isRevealed(row,col)==1)
               {
                 state = FINISHED_LOSS; 
-                
               }
 
           }

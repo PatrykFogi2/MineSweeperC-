@@ -5,6 +5,7 @@ using namespace std;
 MSTestController::MSTestController(MinesweeperBoard &board, MSBoardTextView &widok):BoardDisplay(board),WidokDisplay(widok)
 {
 
+
 }
 
 
@@ -12,12 +13,14 @@ MSTestController::MSTestController(MinesweeperBoard &board, MSBoardTextView &wid
 
 void MSTestController::play()
 {
-  cout <<"1 - odkryj pole " << endl; 
-  cout <<"2 - oflaguj pole " << endl;  
+  
 while (BoardDisplay.getGameState() == RUNNING )  
 {
-  char tmp; int row; int col;
+  int tmp; int row; int col;
+  cout <<"1 - odkryj pole " << endl; 
+  cout <<"2 - oflaguj pole " << endl; 
   cin >> tmp;
+
 
   cout <<"podaj współrzędne pola" << endl;
   cin >> row >> col; 
@@ -35,5 +38,6 @@ while (BoardDisplay.getGameState() == RUNNING )
 
   
     WidokDisplay.display();
+    cout <<"Next" << endl;
   }
 }

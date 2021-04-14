@@ -10,32 +10,21 @@ MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)
     this -> height = height;
     this -> mode = mode;
     
-    //width = 10;
-    //height = 10;
-    
-
-
-
-    
-    for (int line=0; line<height; line++) 
+    //plansza 000
+    for (int row=0; row<height; row++) 
     {
       for (int column=0; column<width; column++)
         {
-           board[line][column] = {false,false,false};
+           board[row][column] = {false,false,false};
         }
     }
 
 
-    /*
-    board[0][0] = {1,0,0};
-    [1][8] = {0,0,1};
-    board[0][2] = {1,1,0};
-    */
-    //board[8][7] = {0,0,0};
+  
   
   srand( time( NULL ) );
 double mines =0;
-  switch(this->mode) //dziala
+  switch(this->mode) 
   {
       case EASY:
         mines=height*width*0.1;
@@ -82,14 +71,14 @@ double mines =0;
           i++;
         }
   } 
-
 }
+
 
 bool MinesweeperBoard::Czy_Srodek (int row, int col) const
 {
   if(row>=height || col>=width || row<0 || col <0)
     return false;
-      return true;
+  return true;
 }
 
 
@@ -98,19 +87,19 @@ bool MinesweeperBoard::Czy_Srodek (int row, int col) const
 
 void  MinesweeperBoard::debug_display() const //działa
 {
-  for(int line=0; line<height; line++)
+  for(int row=0; row<height; row++)
     {
         for(int column=0; column<width; column++)
         {
-          if(board[line][column].hasMine == true)
+          if(board[row][column].hasMine == true)
             cout<< "[M";
           else
           cout <<"[.";
-          if(board[line][column].isRevealed == true)
+          if(board[row][column].isRevealed == true)
             cout<< "o";
           else
           cout <<".";
-          if(board[line][column].hasFlag == true)
+          if(board[row][column].hasFlag == true)
             cout<< "f]";
           else
             cout <<".]";
@@ -131,13 +120,13 @@ void  MinesweeperBoard::debug_display() const //działa
      
    if(board[row][col].hasFlag ==1)
      return true;
-   if(row>=height || col>=width) //za polem
+   if(Czy_Srodek(row,col) == false) //za polem
     return false; 
    if(board[row][col].hasFlag ==0)
      return false; 
-    if(board[row][col].isRevealed ==1)
+   if(board[row][col].isRevealed ==1)
      return false; 
-     
+   
  }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -163,6 +152,8 @@ void  MinesweeperBoard::debug_display() const //działa
 
 bool MinesweeperBoard::isRevealed(int row, int col) const
   {
+     if(Czy_Srodek(row,col)==false) //za polem
+       return false;
      if(board[row][col].isRevealed ==1)
        return true;  
      return false;      
@@ -197,8 +188,6 @@ int MinesweeperBoard::countMines(int row, int col) const //
         mines++;
       if(Czy_Srodek(row+1, col-1) &&  board[row+1][col-1].hasMine == 1 )
         mines++;
-      //zapytac sie czemu petla nie dzialala
-      
     }
     return mines;
 }
@@ -233,19 +222,19 @@ char MinesweeperBoard::getFieldInfo(int row, int col) const
  {
       
     if(row>=height || col>=width || row<0 ||col<0) //za polem
-      return '#'; //dziala
+      return '#'; 
     else if(board[row][col].hasFlag==true && board[row][col].isRevealed==false )   
-      return 'F'; //dziala
+      return 'F'; 
     else if(board[row][col].hasFlag==false && board[row][col].isRevealed==false )   
-      return '_'; //dziala
+      return '_'; 
     else if(board[row][col].hasMine==true && board[row][col].isRevealed==true )   
-      return 'x'; //dziala
+      return 'x'; 
     else if(board[row][col].isRevealed==true && countMines(row,col) == 0 )   
-      return ' '; //dziala
+      return ' '; 
     else if(board[row][col].isRevealed==true && countMines(row,col) != 0 )  
       {
         char x ='0' + countMines(row, col);
-        return  x;  // kod asci?
+        return  x;  
       }
  }
 //////////////////////////////////////////////////////////////////////////////
@@ -314,21 +303,22 @@ int MinesweeperBoard::getBoardHeight() const //działa
 int MinesweeperBoard::getMineCount() const //działa
 {
   int mines = 0;
-  for(int line=0; line<height; line++)
+  for(int row=0; row<height; row++)
     {
         for(int column=0; column<width; column++)
         {
-
-         if(board[line][column].hasMine == true)
+         if(board[row][column].hasMine == true)
             mines +=1;             
         }
     }
-  
-  return mines;
+
+return mines;
 }
 
 bool MinesweeperBoard::hasMine(int row,int col) const
 {
+     if(Czy_Srodek(row,col)==false)
+       return false;
      if(board[row][col].hasMine ==1)
        return true;  
      return false; 

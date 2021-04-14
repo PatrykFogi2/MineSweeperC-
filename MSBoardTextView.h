@@ -7,6 +7,7 @@ class MSBoardTextView
   MinesweeperBoard &BoardDisplay;
   int height;
   int width;
+  
   public:
   
   MSBoardTextView (MinesweeperBoard &board);
