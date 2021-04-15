@@ -28,6 +28,7 @@ void MSSFMLView::draw (sf::RenderWindow & win)
 	r.setFillColor ( sf::Color::Red );
 	r.setPosition(100,100);
 	win.draw(r);
+    //poczatek commita
 }
 
 
