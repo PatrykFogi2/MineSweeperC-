@@ -9,6 +9,12 @@ using namespace sf;
 class MSSFMLView
 {
 	MinesweeperBoard & board;
+     RectangleShape zakryte;
+     RectangleShape odkryte;
+    Font font;
+    Text txt;
+     RectangleShape linia_poz;
+     RectangleShape linia_pion;
 public:
 	explicit MSSFMLView(MinesweeperBoard & b);
 

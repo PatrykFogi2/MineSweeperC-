@@ -21,9 +21,9 @@ int main()
     window.setVerticalSyncEnabled(false);
     window.setFramerateLimit(1);
 
-    MinesweeperBoard board(10,10,EASY);
+    MinesweeperBoard board(10,10,EASY); 
 	MSSFMLView view(board);
-
+     
     while (window.isOpen())
     {
         sf::Event event;
