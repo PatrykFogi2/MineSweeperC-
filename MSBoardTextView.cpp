@@ -6,8 +6,7 @@ using namespace std;
 
 MSBoardTextView::MSBoardTextView(MinesweeperBoard &board):BoardDisplay(board)
 {
-   int height = BoardDisplay.getBoardHeight();
-   int width = BoardDisplay.getBoardWidth();
+   
 }
 
 
@@ -24,16 +23,11 @@ void MSBoardTextView::display()
           {
               cout <<"[ " <<BoardDisplay.getFieldInfo(row,col)<<" ]" ;
               
-              if(BoardDisplay.hasMine(row,col)==1 &&  BoardDisplay.isRevealed(row,col)==1)
-              {
-                 
-                state = FINISHED_LOSS; 
-              }
-              
           }
               cout << endl;    
     }      
-  cout << endl << endl;
+//   cout << endl << endl;
+//   cout <<BoardDisplay.getGameState() << endl;
  
  
   if(state==FINISHED_LOSS)
@@ -44,6 +38,5 @@ void MSBoardTextView::display()
     {
         cout <<"YOU WIN" << endl;
     }
-    //state == FINISHED_WIN ? cout <<"YOU WIN" : cout << "YOU LOSE" ;  
   
 }
