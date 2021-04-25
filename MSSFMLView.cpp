@@ -12,9 +12,11 @@ MSSFMLView::MSSFMLView(MinesweeperBoard & b) : board(b)
     zakryte.setFillColor(Color(128,128,128));
     linia_poz = RectangleShape(Vector2f(40,1));
     linia_poz.setFillColor(Color(2,210,96));
-    linia_pion.setFillColor(Color(2,210,96));
+    
     linia_pion = RectangleShape(Vector2f(1,40));
+    linia_pion.setFillColor(Color(2,210,96));
     odkryte = RectangleShape(Vector2f(40,40));
+     odkryte.setFillColor(Color(0,0,255));
     
 
   
@@ -26,7 +28,7 @@ MSSFMLView::MSSFMLView(MinesweeperBoard & b) : board(b)
 void MSSFMLView::draw (sf::RenderWindow & win)
 {
     //wczytuje przed petla
-   font.loadFromFile("PatrykWonsewicz/SFML-WON-SAPER/resources/arial-narrow_[pl.allfont.net].ttf");
+   font.loadFromFile("/home/runner/SFML-WON-SAPER/resources/arial-narrow_[pl.allfont.net].ttf");
 
 
   int height = board.getBoardHeight() ; 
@@ -50,11 +52,14 @@ void MSSFMLView::draw (sf::RenderWindow & win)
         {   
             txt.setFont(font);
             txt.setString(board.getFieldInfo(row,col));
-            txt.setPosition(row,col);
+            txt.setFillColor(sf::Color::Red);
+            
+            txt.setPosition(a+15,b-3); // a -x b - y
            linia_pion.setPosition(a,b); 
             linia_poz.setPosition(a,b); 
            win.draw(linia_pion);
            win.draw(linia_poz);
+           win.draw(txt);
         }
        
 

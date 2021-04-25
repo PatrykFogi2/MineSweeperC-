@@ -19,7 +19,7 @@ MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)
         }
     }
 
-//    board[1][1] = {false,true,true};
+  // board[1][1] = {true,true,true};
   
   
   srand( time( NULL ) );

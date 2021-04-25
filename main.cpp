@@ -17,7 +17,7 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Grafika w C++/SFML");
+	sf::RenderWindow window(sf::VideoMode(1200,800), "Grafika w C++/SFML");
     window.setVerticalSyncEnabled(false);
     window.setFramerateLimit(1);
 
@@ -29,8 +29,22 @@ int main()
         sf::Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed) 
-                window.close();
+             if (event.type == Event::MouseButtonPressed) {
+                if (event.mouseButton.button == Mouse::Left) {
+                    int a;
+                    int b;
+                    a = (event.mouseButton.x / 40);
+                    b = (event.mouseButton.y / 30);
+                    board.revealField(a, b);
+                }
+                if (event.mouseButton.button == Mouse::Right) {
+                    int a;
+                    int b;
+                    a = (event.mouseButton.x / 40);
+                    b = (event.mouseButton.y / 30);
+                    board.toggleFlag(a, b);
+                }
+            } 
         }
         
         window.clear();
