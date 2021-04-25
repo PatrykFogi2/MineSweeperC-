@@ -13,6 +13,7 @@ class MSSFMLView
      RectangleShape odkryte;
     Font font;
     Text txt;
+    Text tekst;
      RectangleShape linia_poz;
      RectangleShape linia_pion;
 public:

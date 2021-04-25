@@ -53,7 +53,7 @@ void MSSFMLView::draw (sf::RenderWindow & win)
             txt.setFont(font);
             txt.setString(board.getFieldInfo(row,col));
             txt.setFillColor(sf::Color::Red);
-            
+            if(board.getFieldInfo(row,col=='X')) 
             txt.setPosition(a+15,b-3); // a -x b - y
            linia_pion.setPosition(a,b); 
             linia_poz.setPosition(a,b); 
@@ -68,12 +68,23 @@ void MSSFMLView::draw (sf::RenderWindow & win)
     }
 
   }
-	// tu robimy rysowanie planszy na podstawie zawartości "board"
-	
-	// sf::RectangleShape r;
-	// r.setSize ( sf::Vector2f(10, 10) ) ;
-	// r.setFillColor ( sf::Color::Red );
-	// r.setPosition(100,100);
-	// win.draw(r);
-    //poczatek commita
+	if(board.getGameState() == FINISHED_LOSS)
+      {
+         tekst.setFont(font);
+         tekst.setCharacterSize(100);
+         tekst.setPosition(400,300);
+         tekst.setFillColor(sf::Color::Red);
+         tekst.setString("YOU LOST");
+         win.draw(tekst);
+      }
+    if(board.getGameState() == FINISHED_WIN)
+      {
+         tekst.setFont(font);
+         tekst.setCharacterSize(100);
+         tekst.setPosition(400,300);
+         tekst.setFillColor(sf::Color::Red);
+         tekst.setString("YOU WON");
+         win.draw(tekst);
+      }
+
 }

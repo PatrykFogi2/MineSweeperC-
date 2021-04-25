@@ -39,6 +39,13 @@ while (BoardDisplay.getGameState() == RUNNING )
     
     WidokDisplay.display();
     
-    cout <<"\n Next" << endl;
   }
+  if (BoardDisplay.getGameState() == FINISHED_LOSS) {
+     cout <<"YOU LOST" << endl;
+  }
+
+  if (BoardDisplay.getGameState() == FINISHED_WIN) {
+       cout <<"YOU WON" << endl;
+  } 
 }
+

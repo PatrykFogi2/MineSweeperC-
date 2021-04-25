@@ -12,6 +12,7 @@ MSBoardTextView &WidokDisplay;
 public:
 MSTestController(MinesweeperBoard &board,MSBoardTextView &widok);
 void play(); 
+
 };
 
 
