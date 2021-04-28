@@ -1,10 +1,13 @@
 #include "SFML/Graphics.hpp"
 #include "SFML/Window.hpp"
+#include <SFML/Audio.hpp>
 #include <iostream>
 #include "MinesweeperBoard.h"
 #include "MSBoardTextView.h"
 #include "MSTextController.h"
 #include "MSSFMLView.h"
+using namespace sf;
+using namespace std;
 
 
 
@@ -17,13 +20,25 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1200,800), "Grafika w C++/SFML");
+	sf::RenderWindow window(sf::VideoMode(1200,800), "Saper - Patryk Wonsewicz");
     window.setVerticalSyncEnabled(false);
     window.setFramerateLimit(1);
 
+
+    
+
+
+
+
     MinesweeperBoard board(10,10,EASY); 
 	MSSFMLView view(board);
-     
+  
+
+   
+
+
+
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -54,3 +69,14 @@ int main()
 
   return 0;
 } 
+  // try to reveal the field at (row,col)
+  // Do nothing if any of the following is true
+  // - field was already revealed
+  // - either row or col is outside board
+  // - game is already finished
+  // - there is a flag on the field
+  //
+  // If the field was not revealed and there is no mine on it - reveal it
+  // If the field was not revealed and there is a mine on it:  
+  // - if its the first player action - move mine to another location, reveal field (not in DEBUG mode!)
+  // - reveal it and finish game

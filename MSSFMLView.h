@@ -1,6 +1,6 @@
 #ifndef MSSFMLVIEW_H__
 #define MSSFMLVIEW_H__
-
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include "MSBoardTextView.h"
 #include "MinesweeperBoard.h"
@@ -14,8 +14,16 @@ class MSSFMLView
     Font font;
     Text txt;
     Text tekst;
+ 
+    
      RectangleShape linia_poz;
      RectangleShape linia_pion;
+     CircleShape bomba;
+     CircleShape flaga;
+     RectangleShape stick;
+     RectangleShape lont;
+     
+     
 public:
 	explicit MSSFMLView(MinesweeperBoard & b);
 
