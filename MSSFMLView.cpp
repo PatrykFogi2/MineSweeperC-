@@ -43,20 +43,21 @@ void MSSFMLView::draw (sf::RenderWindow & win)
    
     //wczytuje przed petla
    font.loadFromFile("/home/runner/SFML-WON-SAPER/resources/arial-narrow_[pl.allfont.net].ttf");
-//    bomba.loadFromFile("/home/runner/SFML-WON-SAPER/resources/tekstura.png");
-
+  
+   
+  int wysokosc = 600;
+  int szerokosc =800;
   int height = board.getBoardHeight() ; 
   int width = board.getBoardWidth() ; 
   for(int row =0; row<height ; row++){
     for (int col =0 ; col <width; col++){
 
-    // int a =(width/2) + (col *70 /2) ;
-    //  int b = (height/2) +(row *70 /2);
+ 
     int a,b;
-    //  a = width/2+ 24 *col;
-    //  b = height/2+  24 *row;
-    a = row* 40;
-    b = col * 30;
+    a = szerokosc/2 + col * 40 - (height*40/2) ;
+    b = wysokosc/2 + row * 30 - (width*30/2);
+    // a = row * 40;
+    // b = col * 30;
       
 
       if(board.isRevealed(row,col) == 0)
@@ -84,6 +85,7 @@ void MSSFMLView::draw (sf::RenderWindow & win)
            lont.setPosition(a+25,b+4);
            win.draw(bomba);
            win.draw(lont);
+           
         }
     
          if(board.getFieldInfo(row,col) =='F' )
@@ -121,7 +123,7 @@ void MSSFMLView::draw (sf::RenderWindow & win)
 
          tekst.setFont(font);
          tekst.setCharacterSize(100);
-         tekst.setPosition(400,300);
+         tekst.setPosition(200,30);
          tekst.setFillColor(sf::Color::Red);
          tekst.setString("YOU LOST");
          win.draw(tekst);
@@ -130,8 +132,8 @@ void MSSFMLView::draw (sf::RenderWindow & win)
       {
          tekst.setFont(font);
          tekst.setCharacterSize(100);
-         tekst.setPosition(400,300);
-         tekst.setFillColor(sf::Color::Red);
+         tekst.setPosition(200,30);
+         tekst.setFillColor(sf::Color::White);
          tekst.setString("YOU WON");
          win.draw(tekst);
       }

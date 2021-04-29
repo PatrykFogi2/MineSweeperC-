@@ -21,7 +21,6 @@ class MinesweeperBoard
   GameMode mode;   //poziom
   GameState state;
   int FirstMove;
-  //first move
   void PrzeniesMine(int row, int col) ;
   bool Czy_Srodek (int row, int col) const ;
  

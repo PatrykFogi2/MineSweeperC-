@@ -20,10 +20,10 @@ using namespace std;
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1200,800), "Saper - Patryk Wonsewicz");
+	sf::RenderWindow window(sf::VideoMode(800,600), "Saper - Patryk Wonsewicz");
     window.setVerticalSyncEnabled(false);
     window.setFramerateLimit(1);
-
+   
 
     
 
@@ -38,25 +38,30 @@ int main()
 
 
 
-
     while (window.isOpen())
     {
         sf::Event event;
         while (window.pollEvent(event))
         {
+            // a = szerokosc/2 + col * 40 - (height*40/2) ;
+   // b = wysokosc/2 + row * 30 - (width*30/2);
              if (event.type == Event::MouseButtonPressed) {
                 if (event.mouseButton.button == Mouse::Left) {
                     int a;
                     int b;
-                    a = (event.mouseButton.x / 40);
-                    b = (event.mouseButton.y / 30);
+                    b = ((event.mouseButton.x / 40) -5);
+                    a = ((event.mouseButton.y / 30)-5);
+                    // a =(event.mouseButton.x);
+                    // b = (event.mouseButton.y);
                     board.revealField(a, b);
                 }
                 if (event.mouseButton.button == Mouse::Right) {
                     int a;
                     int b;
-                    a = (event.mouseButton.x / 40);
-                    b = (event.mouseButton.y / 30);
+                    b = ((event.mouseButton.x / 40) - 5);
+                    a = ((event.mouseButton.y / 30)-5);
+                    // a =(event.mouseButton.x/20);
+                    // b = (event.mouseButton.y/10);
                     board.toggleFlag(a, b);
                 }
             } 
@@ -69,14 +74,4 @@ int main()
 
   return 0;
 } 
-  // try to reveal the field at (row,col)
-  // Do nothing if any of the following is true
-  // - field was already revealed
-  // - either row or col is outside board
-  // - game is already finished
-  // - there is a flag on the field
-  //
-  // If the field was not revealed and there is no mine on it - reveal it
-  // If the field was not revealed and there is a mine on it:  
-  // - if its the first player action - move mine to another location, reveal field (not in DEBUG mode!)
-  // - reveal it and finish game
+  

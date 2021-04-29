@@ -10,7 +10,7 @@ MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)
     this -> height = height;
     this -> mode = mode;
     this -> FirstMove = 0;
-    //plansza 000
+
     for (int row=0; row<height; row++) 
     {
       for (int column=0; column<width; column++)
@@ -19,7 +19,7 @@ MinesweeperBoard::MinesweeperBoard(int width, int height, GameMode mode)
         }
     }
 
-  // board[1][1] = {true,true,true};
+ 
   
   
   srand( time( NULL ) );
@@ -115,12 +115,12 @@ void  MinesweeperBoard::debug_display() const //działa
 //////////////////////////////////////////////////////////////////////////////
 //dziala
 
- bool MinesweeperBoard::hasFlag(int row, int col)  const //sprawdz
+ bool MinesweeperBoard::hasFlag(int row, int col)  const
  {
      
    if(board[row][col].hasFlag ==1)
      return true;
-   if(Czy_Srodek(row,col) == false) //za polem
+   if(Czy_Srodek(row,col) == false) 
     return false; 
    if(board[row][col].hasFlag ==0)
      return false; 
@@ -147,7 +147,7 @@ void  MinesweeperBoard::debug_display() const //działa
 
 bool MinesweeperBoard::isRevealed(int row, int col) const
   {
-     if(Czy_Srodek(row,col)==false) //za polem
+     if(Czy_Srodek(row,col)==false) 
        return false;
      if(board[row][col].isRevealed ==1)
        return true;  
@@ -155,14 +155,14 @@ bool MinesweeperBoard::isRevealed(int row, int col) const
   }
  //////////////////////////////////////////////////////////////////////////////
 
-int MinesweeperBoard::countMines(int row, int col) const //
+int MinesweeperBoard::countMines(int row, int col) const
 {
   int mines = 0;  
   
-  if(Czy_Srodek(row,col)== 0) //za polem
+  if(Czy_Srodek(row,col)== 0)
     return -1;
   
-  if(board[row][col].isRevealed ==0) //nieodkryty
+  if(board[row][col].isRevealed ==0) 
     return -1;
    
    else
@@ -219,7 +219,7 @@ int MinesweeperBoard::countMines(int row, int col) const //
 char MinesweeperBoard::getFieldInfo(int row, int col) const 
  {
       
-    if(Czy_Srodek(row,col)== false) //za polem
+    if(Czy_Srodek(row,col)== false) 
       return '#'; 
     else if(board[row][col].hasFlag==true && board[row][col].isRevealed==false )   
       return 'F'; 
