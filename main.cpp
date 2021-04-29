@@ -44,7 +44,7 @@ int main()
         while (window.pollEvent(event))
         {
             // a = szerokosc/2 + col * 40 - (height*40/2) ;
-   // b = wysokosc/2 + row * 30 - (width*30/2);
+           // b = wysokosc/2 + row * 30 - (width*30/2);
              if (event.type == Event::MouseButtonPressed) {
                 if (event.mouseButton.button == Mouse::Left) {
                     int a;

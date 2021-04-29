@@ -22,7 +22,7 @@ class MSSFMLView
      CircleShape flaga;
      RectangleShape stick;
      RectangleShape lont;
-    //  Music bum;
+   
      
      
 public:

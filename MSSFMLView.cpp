@@ -31,8 +31,8 @@ MSSFMLView::MSSFMLView(MinesweeperBoard & b) : board(b)
 
      stick = RectangleShape(Vector2f(3,25));
      stick.setFillColor(Color(0,0,0));
+     font.loadFromFile("/home/runner/SFML-WON-SAPER/resources/arial-narrow_[pl.allfont.net].ttf");
   
-
 }
 
 
@@ -41,8 +41,8 @@ void MSSFMLView::draw (sf::RenderWindow & win)
 {
 
    
-    //wczytuje przed petla
-   font.loadFromFile("/home/runner/SFML-WON-SAPER/resources/arial-narrow_[pl.allfont.net].ttf");
+   
+//    font.loadFromFile("/home/runner/SFML-WON-SAPER/resources/arial-narrow_[pl.allfont.net].ttf");
   
    
   int wysokosc = 600;
@@ -102,8 +102,24 @@ void MSSFMLView::draw (sf::RenderWindow & win)
         {   
             txt.setFont(font);
             txt.setString(board.getFieldInfo(row,col));
-            txt.setFillColor(sf::Color::Red);
-            
+           
+            if(board.getFieldInfo(row,col)=='1')
+              txt.setFillColor(Color::Red);
+            if(board.getFieldInfo(row,col)=='2')
+              txt.setFillColor(Color::Blue);
+            if(board.getFieldInfo(row,col)=='3')
+              txt.setFillColor(Color::Green);
+            if(board.getFieldInfo(row,col)=='4')
+              txt.setFillColor(Color::Yellow);
+            if(board.getFieldInfo(row,col)=='5')
+              txt.setFillColor(Color::Cyan);
+            if(board.getFieldInfo(row,col)=='6')
+              txt.setFillColor(Color::White);
+            if(board.getFieldInfo(row,col)=='7')
+              txt.setFillColor(Color::Black);
+            if(board.getFieldInfo(row,col)=='8')
+              txt.setFillColor(Color::Transparent);
+
              txt.setPosition(a+15,b-3); 
        
            win.draw(txt);

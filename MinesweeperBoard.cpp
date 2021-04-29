@@ -267,19 +267,19 @@ void MinesweeperBoard::revealField(int row, int col)
 
 //////////////////////////////////////////////////////////////////////////////
 
-int MinesweeperBoard::getBoardWidth() const //działa
+int MinesweeperBoard::getBoardWidth() const 
 {
   return width;
 }
 
 
-int MinesweeperBoard::getBoardHeight() const //działa
+int MinesweeperBoard::getBoardHeight() const 
 {
   return height;
 }
 
 
-int MinesweeperBoard::getMineCount() const //działa
+int MinesweeperBoard::getMineCount() const 
 {
   int mines = 0;
   for(int row=0; row<height; row++)
