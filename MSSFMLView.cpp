@@ -31,7 +31,7 @@ MSSFMLView::MSSFMLView(MinesweeperBoard & b) : board(b)
 
      stick = RectangleShape(Vector2f(3,25));
      stick.setFillColor(Color(0,0,0));
-     font.loadFromFile("/home/runner/SFML-WON-SAPER/resources/arial-narrow_[pl.allfont.net].ttf");
+     font.loadFromFile("../resources/arial-narrow_[pl.allfont.net].ttf");
   
 }
 
@@ -55,20 +55,20 @@ void MSSFMLView::draw (sf::RenderWindow & win)
  
     int a,b;
     a = szerokosc/2 + col * 40 - (height*40/2) ;
-    b = wysokosc/2 + row * 30 - (width*30/2);
-    // a = row * 40;
-    // b = col * 30;
+    b = wysokosc/2 + row * 40 - (width*40/2);
+    
       
 
       if(board.isRevealed(row,col) == 0)
         {
-            zakryte.setPosition(a,b);
-            win.draw(zakryte);
-             linia_pion.setPosition(a,b); 
-            linia_poz.setPosition(a,b); 
+           zakryte.setPosition(a,b);
+           win.draw(zakryte);
+           linia_pion.setPosition(a,b); 
+           linia_poz.setPosition(a,b); 
            win.draw(linia_pion);
            win.draw(linia_poz);
         }
+     
       if(board.isRevealed(row,col)== 1)  
         {
             odkryte.setPosition(a,b);
@@ -81,8 +81,8 @@ void MSSFMLView::draw (sf::RenderWindow & win)
 
         if(board.getFieldInfo(row,col) =='x' )
         {
-           bomba.setPosition(a+12,b+8);
-           lont.setPosition(a+25,b+4);
+           bomba.setPosition(a+12,b+12);
+           lont.setPosition(a+25,b+8);
            win.draw(bomba);
            win.draw(lont);
            
@@ -90,8 +90,8 @@ void MSSFMLView::draw (sf::RenderWindow & win)
     
          if(board.getFieldInfo(row,col) =='F' )
         {
-           flaga.setPosition(a+18,b);
-           stick.setPosition(a+25,b+4);
+           flaga.setPosition(a+16,b+2);
+           stick.setPosition(a+23,b+6);
            win.draw(flaga);
            win.draw(stick);
         }
@@ -120,7 +120,7 @@ void MSSFMLView::draw (sf::RenderWindow & win)
             if(board.getFieldInfo(row,col)=='8')
               txt.setFillColor(Color::Transparent);
 
-             txt.setPosition(a+15,b-3); 
+             txt.setPosition(a+15,b+3); 
        
            win.draw(txt);
         }
